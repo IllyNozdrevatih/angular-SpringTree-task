@@ -16,6 +16,7 @@ export class PaginationComponent implements OnInit {
   }
 
   handlerButtonPrevPage() {
+    if (this.currentPage === 1) return
     this.moveToPage(this.currentPage - 1)
   }
 

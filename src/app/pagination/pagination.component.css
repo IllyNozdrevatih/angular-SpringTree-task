@@ -10,4 +10,15 @@
   display: flex;
   align-items: center;
   height: 24px;
+  font-size: 18px;
+  margin: 0 3px;
+}
+
+.pagination-next-page,
+.pagination-prev-page {
+  cursor: pointer;
+}
+
+.pagination-prev-page--disabled {
+  cursor: not-allowed;
 }

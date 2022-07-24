@@ -17,13 +17,13 @@ enum OrderOptions {
 export class AppComponent implements OnInit {
   catList:CatCard[] = []
 
-  readonly formLimitOptions = [3, 6, 9]
+  readonly formLimitOptions = [3, 6]
   formLimit = this.formLimitOptions[0]
 
   readonly formOrderOptions = ['Rand', 'Desc', 'Asc']
   formOrder = this.formOrderOptions[1]
 
-  pageNumber = 0
+  pageNumber = 1
 
   constructor(private configService: ConfigService, private router: Router, private activatedRoute: ActivatedRoute) {}
 

@@ -46,6 +46,7 @@ code {
 .form-select {
   margin: 0 5px;
   font-size: 18px;
+  cursor: pointer;
 }
 
 .text-center {
