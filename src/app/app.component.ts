@@ -83,6 +83,12 @@ export class AppComponent implements OnInit {
       this.catList = data
     })
     this.pageNumber = pageNumber
+    if (pageNumber === 1){
+      this.router.navigate(
+        ['/']
+      )
+      return
+    }
     this.router.navigate(
       ['/'],
       {
