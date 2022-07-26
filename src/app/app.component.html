@@ -1,48 +1,32 @@
 <div class="App container">
   <h1 class="text-center">SpringTree task</h1>
-  <form class="form-wrap d-flex center">
-    <select
-      class="form-select"
-      [(ngModel)]="formLimit"
-      [ngModelOptions]="{standalone: true}"
-      (ngModelChange)="handlerFormLimitSelect($event)"
-    >
-      <option
-        *ngFor="let limitOption of formLimitOptions"
-        [selected]="limitOption === formLimit"
-        [value]="limitOption"
-      >
-        {{ limitOption }}
-      </option>
-    </select>
-    <select
-      class="form-select"
-      [(ngModel)]='formOrder'
-      [ngModelOptions]="{standalone: true}"
-      (ngModelChange)="handlerFormOrderSelect($event)"
-    >
-      <option
-        *ngFor="let orderOption of formOrderOptions"
-        [selected]="orderOption === formOrder"
-        [value]="orderOption"
-      >
-        {{ orderOption }}
-      </option>
-    </select>
-  </form>
+  <ul class="nav d-flex justify-content-center">
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        routerLink=""
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >Cats list</a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        routerLink="/favourites"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >Favourites</a>
+    </li>
+    <li class="nav-item">
+      <a
+        class="nav-link active"
+        routerLink="/contact-us"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+      >Contact us</a>
+    </li>
+  </ul>
   <main>
-    <div class="row center">
-      <app-cat-card
-        class="col d-flex"
-        *ngFor="let catItem of catList"
-        [catCardItem]="catItem">
-      </app-cat-card>
-    </div>
-    <div class="row center">
-      <app-pagination
-        [currentPage]="pageNumber"
-        (handlerChange)="handlerChangePagination($event)"
-      ></app-pagination>
-    </div>
+    <router-outlet></router-outlet>
   </main>
 </div>

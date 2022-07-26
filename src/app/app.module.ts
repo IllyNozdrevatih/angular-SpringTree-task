@@ -3,35 +3,44 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { CatCardComponent } from './cat-card/cat-card.component';
-import { FormsModule } from "@angular/forms";
-import { PaginationComponent } from './pagination/pagination.component';
-import { Routes, RouterModule } from '@angular/router';
+import { CatCardComponent } from './pages/cats-list/cat-card/cat-card.component';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../environments/environment'; // CLI imports router
+import { environment } from '../environments/environment';
+import { FormFeedbackComponent } from './pages/contact-us/form-feedback/form-feedback.component';
+import { BaseModalComponent } from './base/base-modal/base-modal.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { CatsListComponent } from './pages/cats-list/cats-list.component';
+import { BasePaginationComponent } from './base/base-pagination/base-pagination.component';
+import { CatsListFavouritesComponent } from './pages/cats-list-favourites/cats-list-favourites.component';
+import { CatCardFavouriteComponent } from './pages/cats-list-favourites/cat-card-favourite/cat-card-favourite.component'; // CLI imports router
 
-const routes: Routes = []
 
 @NgModule({
   declarations: [
     AppComponent,
     CatCardComponent,
-    PaginationComponent
+    FormFeedbackComponent,
+    BaseModalComponent,
+    ContactUsComponent,
+    CatsListComponent,
+    BasePaginationComponent,
+    CatsListFavouritesComponent,
+    CatCardFavouriteComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    ReactiveFormsModule,
+    AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-  ],
-  exports: [
-    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
