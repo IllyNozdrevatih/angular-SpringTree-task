@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CatCard} from './cat-card.component.interface';
 
 @Component({
@@ -8,10 +8,14 @@ import {CatCard} from './cat-card.component.interface';
 })
 export class CatCardComponent implements OnInit {
   @Input() catCardItem!: CatCard;
+  @Output() handlerFavoriteClick = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  handlerFavoriteIconClick(catItemID: string){
+    this.handlerFavoriteClick.emit(catItemID)
+  }
 }

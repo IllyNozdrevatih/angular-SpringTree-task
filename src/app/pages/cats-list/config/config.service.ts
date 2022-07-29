@@ -47,4 +47,14 @@ export class ConfigService {
       })
       .pipe(catchError(this.handleError));
   }
+
+  deleteFavouritesCats(favourite_id: string){
+    return this.http
+      .delete(`https://api.thecatapi.com/v1/favourites/${favourite_id}`, {
+        headers: {
+          'x-api-key': '6a47c858-707f-4dc7-a309-cb4cdf0365ae'
+        }
+      })
+      .pipe(catchError(this.handleError));
+  }
 }
