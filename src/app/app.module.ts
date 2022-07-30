@@ -17,8 +17,6 @@ import { CatsListFavouritesComponent } from './pages/cats-list-favourites/cats-l
 import { CatCardFavouriteComponent } from './pages/cats-list-favourites/cat-card-favourite/cat-card-favourite.component'; // CLI imports router
 
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './store/counter.reducer';
-import { MyCounterComponent } from './my-counter/my-counter.component';
 import {favoritesReducer} from "./store/favorites.reducer";
 
 
@@ -34,11 +32,9 @@ import {favoritesReducer} from "./store/favorites.reducer";
     BasePaginationComponent,
     CatsListFavouritesComponent,
     CatCardFavouriteComponent,
-    MyCounterComponent,
   ],
   imports: [
     StoreModule.forRoot({
-      count: counterReducer,
       favorites: favoritesReducer
     }),
     BrowserModule,
