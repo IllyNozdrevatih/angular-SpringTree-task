@@ -1,0 +1,24 @@
+.base-pagination {
+  display: flex;
+}
+
+.base-pagination-prev-page svg {
+  transform: rotate(180deg);
+}
+
+.base-pagination-current-page {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  font-size: 18px;
+  margin: 0 3px;
+}
+
+.base-pagination-next-page,
+.base-pagination-prev-page {
+  cursor: pointer;
+}
+
+.base-pagination-prev-page--disabled {
+  cursor: not-allowed;
+}

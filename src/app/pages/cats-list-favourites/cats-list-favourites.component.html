@@ -1,0 +1,10 @@
+<h2>Favorites list</h2>
+<div class="row">
+  <app-cat-card
+    class="col-4"
+    *ngFor="let catItem of favorite$ | async"
+    [catCardItem]="catItem"
+    (handlerFavoriteClick)="deleteCatCardFavorites($event)"
+  >
+  </app-cat-card>
+</div>

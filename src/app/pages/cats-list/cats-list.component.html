@@ -1,0 +1,49 @@
+
+<div infinite-scroll
+ (scrolled)="onScrollDown($event)"
+ [infiniteScrollDistance]="1"
+>
+  <form class="form-wrap d-flex justify-content-center">
+    <div class="form-group mx-2">
+      <select
+        class="form-control"
+        [(ngModel)]="formLimit"
+        [ngModelOptions]="{standalone: true}"
+        (ngModelChange)="handlerFormLimitSelect($event)"
+      >
+        <option
+          *ngFor="let limitOption of formLimitOptions"
+          [selected]="limitOption === formLimit"
+          [value]="limitOption"
+        >
+          {{ limitOption }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group mx-2">
+      <select
+        class="form-control"
+        [(ngModel)]='formOrder'
+        [ngModelOptions]="{standalone: true}"
+        (ngModelChange)="handlerFormOrderSelect($event)"
+      >
+        <option
+          *ngFor="let orderOption of formOrderOptions"
+          [selected]="orderOption === formOrder"
+          [value]="orderOption"
+        >
+          {{ orderOption }}
+        </option>
+      </select>
+    </div>
+  </form>
+  <div class="row">
+    <app-cat-card
+      class="col-4"
+      *ngFor="let catItem of catList"
+      [catCardItem]="catItem"
+      (handlerFavoriteClick)="addCatCardFavorites(catItem.id)"
+    >
+    </app-cat-card>
+  </div>
+</div>

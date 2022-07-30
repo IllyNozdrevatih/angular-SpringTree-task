@@ -18,6 +18,8 @@ import { CatsListFavouritesComponent } from './pages/cats-list-favourites/cats-l
 import { StoreModule } from '@ngrx/store';
 import {favoritesReducer} from "./store/favorites.reducer";
 
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import {favoritesReducer} from "./store/favorites.reducer";
     StoreModule.forRoot({
       favorites: favoritesReducer
     }),
+    InfiniteScrollModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
