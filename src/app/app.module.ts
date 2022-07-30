@@ -16,6 +16,12 @@ import { BasePaginationComponent } from './base/base-pagination/base-pagination.
 import { CatsListFavouritesComponent } from './pages/cats-list-favourites/cats-list-favourites.component';
 import { CatCardFavouriteComponent } from './pages/cats-list-favourites/cat-card-favourite/cat-card-favourite.component'; // CLI imports router
 
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './store/counter.reducer';
+import { MyCounterComponent } from './my-counter/my-counter.component';
+import {favoritesReducer} from "./store/favorites.reducer";
+
+
 
 @NgModule({
   declarations: [
@@ -28,8 +34,13 @@ import { CatCardFavouriteComponent } from './pages/cats-list-favourites/cat-card
     BasePaginationComponent,
     CatsListFavouritesComponent,
     CatCardFavouriteComponent,
+    MyCounterComponent,
   ],
   imports: [
+    StoreModule.forRoot({
+      count: counterReducer,
+      favorites: favoritesReducer
+    }),
     BrowserModule,
     HttpClientModule,
     FormsModule,
