@@ -32,7 +32,9 @@
   transition: all .3s ease-in-out;
 }
 
+.cat-card__favorite-icon--favorite svg,
 .cat-card__favorite-icon:hover svg {
   stroke: #f2c94c;
   fill: #f2c94c;
 }
+

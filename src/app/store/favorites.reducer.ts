@@ -1,16 +1,17 @@
 import { createReducer, on } from '@ngrx/store';
-import {add, initFavorites} from './favorites.actions';
+import {add, remove} from './favorites.actions';
 import {CatCard} from "../pages/cats-list/cat-card/cat-card.component.interface";
-import {CatCardFavourite} from "../pages/cats-list-favourites/cat-card-favourite.component.interface";
 
 export interface CatsListFavoritesState {
-  catsListFavorites: CatCardFavourite[]
+  catsListFavorites: CatCard[]
 }
 
-export const initialState: CatCardFavourite[] = []
+export const initialState: CatCard[] = []
 
 export const favoritesReducer = createReducer(
   initialState,
-  on(add, (state, {catCard}) => [catCard]),
-  // on(initFavorites, (state) => ({...state}))
+  on(add, (state, {catCard}) => [...state, catCard]),
+  on(remove, (state, {catCardID}) => {
+    return state.filter(catItem => catItem.id !== catCardID)
+  })
 );

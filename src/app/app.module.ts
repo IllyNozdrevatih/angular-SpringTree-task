@@ -14,7 +14,6 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { CatsListComponent } from './pages/cats-list/cats-list.component';
 import { BasePaginationComponent } from './base/base-pagination/base-pagination.component';
 import { CatsListFavouritesComponent } from './pages/cats-list-favourites/cats-list-favourites.component';
-import { CatCardFavouriteComponent } from './pages/cats-list-favourites/cat-card-favourite/cat-card-favourite.component'; // CLI imports router
 
 import { StoreModule } from '@ngrx/store';
 import {favoritesReducer} from "./store/favorites.reducer";
@@ -31,7 +30,6 @@ import {favoritesReducer} from "./store/favorites.reducer";
     CatsListComponent,
     BasePaginationComponent,
     CatsListFavouritesComponent,
-    CatCardFavouriteComponent,
   ],
   imports: [
     StoreModule.forRoot({

@@ -4,3 +4,6 @@ export interface CatCard {
   width: number,
   height: number
 }
+export interface CatCardFavorite extends CatCard {
+  favorite: boolean
+}
