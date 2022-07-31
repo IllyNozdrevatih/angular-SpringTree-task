@@ -42,6 +42,15 @@ q - string
   <li>store - contain store file selector for every point of store</li>
 </ul>
 
+## Pages
+
+<ul>
+  <li>cats-list / - main page, cats list</li>
+  <li>cats-list-favourites /favourites - favourites cats</li>
+  <li>breeds-list /breeds - breeds list</li>
+  <li>contact-us /contact-us - feedback form with validation</li>
+</ul>
+
 ## Default app information
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
