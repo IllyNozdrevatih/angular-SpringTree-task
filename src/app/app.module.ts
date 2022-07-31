@@ -23,6 +23,7 @@ import {favoritesReducer} from "./pages/cats-list-favourites/store/favorites.red
 import {CatsListPage} from "./pages/cats-list/cats-list.page";
 import { BreedsListPage } from './pages/breeds-list/breeds-list.page';
 import { BreedCardComponent } from './pages/breeds-list/breed-card/breed-card.component';
+import {breedListReducer} from "./pages/breeds-list/store/breeds-list.reducer";
 
 
 
@@ -43,6 +44,7 @@ import { BreedCardComponent } from './pages/breeds-list/breed-card/breed-card.co
     StoreModule.forRoot({
       catList: catListReducer,
       favorites: favoritesReducer,
+      breedList: breedListReducer,
     }),
     InfiniteScrollModule,
     BrowserModule,

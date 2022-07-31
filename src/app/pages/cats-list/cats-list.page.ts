@@ -37,10 +37,10 @@ export class CatsListPage implements OnInit {
     private catListService: CatsListService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store<{ favorites: CatCardInterface[]}>
+    private store: Store<{ favorites: CatCardInterface[], catList: CatCardInterface[] }>
   ) {
     this.favorite$ = this.store.select('favorites')
-    this.catList$ = this.store.select(selectCatList)
+    this.catList$ = this.store.select('catList')
     this.favoriteID$ = this.store.select(selectFavoritesIDs)
   }
 
