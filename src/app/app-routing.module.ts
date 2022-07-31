@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {FormFeedbackComponent} from "./pages/contact-us/form-feedback/form-feedback.component";
-import {CatsListComponent} from "./pages/cats-list/cats-list.component";
-import {ContactUsComponent} from "./pages/contact-us/contact-us.component";
-import {CatsListFavouritesComponent} from "./pages/cats-list-favourites/cats-list-favourites.component";
+import {CatsListPage} from "./pages/cats-list/cats-list.page";
+import {ContactUsPage} from "./pages/contact-us/contact-us.page";
+import {CatsListFavouritesPage} from "./pages/cats-list-favourites/cats-list-favourites.page";
+import {BreedsListPage} from "./pages/breeds-list/breeds-list.page";
 
 const routes: Routes = [
-  { path: '', component: CatsListComponent },
-  { path: 'contact-us', component: ContactUsComponent },
-  { path: 'favourites', component: CatsListFavouritesComponent },
+  { path: '', component: CatsListPage },
+  { path: 'contact-us', component: ContactUsPage },
+  { path: 'favourites', component: CatsListFavouritesPage },
+  { path: 'breeds', component: BreedsListPage },
 ];
 
 @NgModule({

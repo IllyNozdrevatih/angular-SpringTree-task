@@ -10,10 +10,9 @@ import { environment } from '../environments/environment';
 import { FormFeedbackComponent } from './pages/contact-us/form-feedback/form-feedback.component';
 import { BaseModalComponent } from './base/base-modal/base-modal.component';
 import { AppRoutingModule } from "./app-routing.module";
-import { ContactUsComponent } from './pages/contact-us/contact-us.component';
-import { CatsListComponent } from './pages/cats-list/cats-list.component';
+import { ContactUsPage } from './pages/contact-us/contact-us.page';
 import { BasePaginationComponent } from './base/base-pagination/base-pagination.component';
-import { CatsListFavouritesComponent } from './pages/cats-list-favourites/cats-list-favourites.component';
+import { CatsListFavouritesPage } from './pages/cats-list-favourites/cats-list-favourites.page';
 
 import { StoreModule } from '@ngrx/store';
 
@@ -21,6 +20,9 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import {catListReducer} from "./pages/cats-list/store/cats-list.reducer";
 import {favoritesReducer} from "./pages/cats-list-favourites/store/favorites.reducer";
+import {CatsListPage} from "./pages/cats-list/cats-list.page";
+import { BreedsListPage } from './pages/breeds-list/breeds-list.page';
+import { BreedCardComponent } from './pages/breeds-list/breed-card/breed-card.component';
 
 
 
@@ -30,10 +32,12 @@ import {favoritesReducer} from "./pages/cats-list-favourites/store/favorites.red
     CatCardComponent,
     FormFeedbackComponent,
     BaseModalComponent,
-    ContactUsComponent,
-    CatsListComponent,
+    ContactUsPage,
+    CatsListPage,
     BasePaginationComponent,
-    CatsListFavouritesComponent,
+    CatsListFavouritesPage,
+    BreedsListPage,
+    BreedCardComponent,
   ],
   imports: [
     StoreModule.forRoot({

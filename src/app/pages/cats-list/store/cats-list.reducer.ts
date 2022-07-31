@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { init, push } from './cats-list.actions'
-import {CatCard} from "../cat-card/cat-card.component.interface";
+import {CatCardInterface} from "../cat-card/cat-card.component.interface";
 
-export const catsListState: ReadonlyArray<CatCard> = []
+export const catsListState: ReadonlyArray<CatCardInterface> = []
 
 export const catListReducer = createReducer(
   catsListState,

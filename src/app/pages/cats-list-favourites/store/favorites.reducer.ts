@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import {add, remove, toggleFavorite} from './favorites.actions';
-import {CatCard, CatCardFavorite} from "../../cats-list/cat-card/cat-card.component.interface";
+import {CatCardInterface} from "../../cats-list/cat-card/cat-card.component.interface";
 
 
-export const initialState: ReadonlyArray<CatCard> = []
+export const initialState: ReadonlyArray<CatCardInterface> = []
 
 export const favoritesReducer = createReducer(
   initialState,

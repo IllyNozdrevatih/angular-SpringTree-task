@@ -2,22 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {CatsListService} from "../cats-list/cats-list.service";
 import {Observable} from 'rxjs';
 import {Store} from "@ngrx/store";
-import {CatCard, CatCardFavorite} from "../cats-list/cat-card/cat-card.component.interface";
+import {CatCardInterface} from "../cats-list/cat-card/cat-card.component.interface";
 import {remove} from "./store/favorites.actions";
 
 @Component({
   selector: 'app-cats-list-favourites',
-  templateUrl: './cats-list-favourites.component.html',
-  styleUrls: ['./cats-list-favourites.component.css'],
+  templateUrl: './cats-list-favourites.page.html',
+  styleUrls: ['./cats-list-favourites.page.css'],
   providers: [CatsListService]
 })
-export class CatsListFavouritesComponent implements OnInit {
-  favorite$: Observable<CatCardFavorite[]>;
+export class CatsListFavouritesPage implements OnInit {
+  favorite$: Observable<CatCardInterface[]>;
   allTodos$: any;
 
-  catListFavorites:CatCardFavorite[] = []
+  catListFavorites:CatCardInterface[] = []
 
-  constructor(private configService: CatsListService, private store: Store<{ favorites: CatCardFavorite[] }>) {
+  constructor(private configService: CatsListService, private store: Store<{ favorites: CatCardInterface[] }>) {
     this.favorite$ = store.select('favorites')
    }
 

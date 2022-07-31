@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CatCard} from './cat-card.component.interface';
+import {CatCardInterface} from './cat-card.component.interface';
 
 @Component({
   selector: 'app-cat-card',
@@ -7,7 +7,7 @@ import {CatCard} from './cat-card.component.interface';
   styleUrls: ['./cat-card.component.css']
 })
 export class CatCardComponent implements OnInit {
-  @Input() catCardItem!: CatCard;
+  @Input() catCardItem!: CatCardInterface;
   @Input() isFavorite!: boolean;
   @Output() handlerFavoriteClick = new EventEmitter<string>();
 

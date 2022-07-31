@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CatCard, CatCardFavorite} from "./cat-card/cat-card.component.interface";
+import {CatCardInterface} from "./cat-card/cat-card.component.interface";
 import {CatsListService} from "./cats-list.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
@@ -16,14 +16,14 @@ enum OrderOptions {
 
 @Component({
   selector: 'app-cats-list',
-  templateUrl: './cats-list.component.html',
-  styleUrls: ['./cats-list.component.css'],
+  templateUrl: './cats-list.page.html',
+  styleUrls: ['./cats-list.page.css'],
   providers: [CatsListService]
 })
-export class CatsListComponent implements OnInit {
-  favorite$: Observable<CatCardFavorite[]>;
+export class CatsListPage implements OnInit {
+  favorite$: Observable<CatCardInterface[]>;
   favoriteID$: Observable<string[]>;
-  catList$: Observable<ReadonlyArray<CatCard>>;
+  catList$: Observable<ReadonlyArray<CatCardInterface>>;
 
   readonly formLimitOptions = [9, 12]
   formLimit = this.formLimitOptions[0]
@@ -34,10 +34,10 @@ export class CatsListComponent implements OnInit {
   pageNumber = 1
 
   constructor(
-    private configService: CatsListService,
+    private catListService: CatsListService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private store: Store<{ favorites: CatCardFavorite[]}>
+    private store: Store<{ favorites: CatCardInterface[]}>
   ) {
     this.favorite$ = this.store.select('favorites')
     this.catList$ = this.store.select(selectCatList)
@@ -65,13 +65,13 @@ export class CatsListComponent implements OnInit {
         this.formOrder = String(order)
       });
 
-    this.configService.fetchCats(this.formLimit, this.pageNumber, this.formOrder).subscribe((data) => {
+    this.catListService.fetchCats(this.formLimit, this.pageNumber, this.formOrder).subscribe((data) => {
       this.store.dispatch(init({catList: data}))
     })
   }
 
   handlerFormLimitSelect(limit: number){
-    this.configService.fetchCats(limit, this.pageNumber, this.formOrder).subscribe((data) => {
+    this.catListService.fetchCats(limit, this.pageNumber, this.formOrder).subscribe((data) => {
       this.store.dispatch(push({catList: data}))
     })
     this.formLimit = limit
@@ -88,7 +88,7 @@ export class CatsListComponent implements OnInit {
   }
 
   handlerFormOrderSelect(order: OrderOptions){
-    this.configService.fetchCats(this.formLimit, this.pageNumber, order).subscribe((data) => {
+    this.catListService.fetchCats(this.formLimit, this.pageNumber, order).subscribe((data) => {
       this.store.dispatch(push({catList: data}))
     })
     this.formOrder = order
@@ -105,7 +105,7 @@ export class CatsListComponent implements OnInit {
   }
 
   handlerChangePagination(pageNumber: number, scrolled = false){
-    this.configService.fetchCats(this.formLimit, pageNumber, this.formOrder).subscribe((data) => {
+    this.catListService.fetchCats(this.formLimit, pageNumber, this.formOrder).subscribe((data) => {
       if (scrolled){
         this.store.dispatch(push({catList: data}))
       } else {
@@ -131,7 +131,7 @@ export class CatsListComponent implements OnInit {
     )
   }
 
-  addCatCardFavorites(catItem: CatCard){
+  addCatCardFavorites(catItem: CatCardInterface){
     this.store.dispatch(toggleFavorite({ catCard: catItem }))
   }
 

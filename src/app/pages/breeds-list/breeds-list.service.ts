@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {CatCardInterface} from "./cat-card/cat-card.component.interface";
+
 import {catchError, throwError} from "rxjs";
+import {BreedCardInterface} from "./breed-card/breed-card.interface";
 
 @Injectable()
-export class CatsListService {
+export class BreedsListService {
   constructor(private http: HttpClient) {
 
   }
@@ -18,9 +19,23 @@ export class CatsListService {
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
-  fetchCats(limit = 3, pageNumber = 0, order = 'Desc'){
+  fetchBreeds(limit = 5, pageNumber = 0){
     return this.http
-      .get<CatCardInterface[]>(`https://api.thecatapi.com/v1/images/search?limit=${limit}&page=${pageNumber}&order=${order}`)
+      .get<BreedCardInterface[]>(`https://api.thecatapi.com/v1/breeds?limit=${limit}&page=${pageNumber}`,{
+        headers: {
+          'x-api-key': '6a47c858-707f-4dc7-a309-cb4cdf0365ae'
+        }}
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  getBreedByName(name: string){
+    return this.http
+      .get<BreedCardInterface[]>(`https://api.thecatapi.com/v1/breeds/search?q=${name}`,{
+        headers: {
+          'x-api-key': '6a47c858-707f-4dc7-a309-cb4cdf0365ae'
+        }}
+      )
       .pipe(catchError(this.handleError));
   }
 }
