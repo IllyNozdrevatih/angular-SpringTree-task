@@ -7,6 +7,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class BaseModalComponent implements OnInit {
   @Input() isShow!: boolean
+  @Input() title!: string
+  @Input() description!: string
   @Output() handlerClose = new EventEmitter<any>();
 
   constructor() { }

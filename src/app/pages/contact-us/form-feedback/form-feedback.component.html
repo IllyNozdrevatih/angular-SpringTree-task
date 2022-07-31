@@ -2,20 +2,56 @@
   <form
     [formGroup]="feedbackForm"
     (ngSubmit)="handlerFormFeedback()"
-    #ngForm="ngForm"
     class="d-flex flex-column">
-    <div class="form-group">
+    <div class="form-group form-feedback-form-group">
       <label for="name">Name</label>
-      <input formControlName="name" id="name" class="form-control" type="text" name="username">
-      <div *ngIf="name?.errors?.['required'] && ngForm.submitted">Name is required</div>
+      <input
+        formControlName="name"
+        id="name"
+        class="form-control"
+        [class]="{
+          'is-invalid': name?.errors?.['required'] && submitted
+        }"
+        type="text"
+        name="username"
+      >
+      <div
+        *ngIf="name?.errors?.['required'] && submitted"
+        class="text-danger mt-1 small"
+      >Name is required</div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-feedback-form-group">
       <label for="email">Email address</label>
-      <input formControlName="email" id="email" class="form-control" type="text" name="email">
+      <input
+        formControlName="email"
+        id="email"
+        class="form-control"
+        [class]="{
+          'is-invalid': (email?.errors?.['required'] || email?.errors?.['email']) && submitted
+        }"
+        type="text"
+        name="email"
+      >
+      <div
+        *ngIf="(email?.errors?.['required'] || email?.errors?.['email']) && submitted"
+        class="text-danger mt-1 small"
+      >{{emailErrorMassage}}</div>
     </div>
-    <div class="form-group">
+    <div class="form-group form-feedback-form-group-textarea">
       <label for="message">Message</label>
-      <textarea formControlName="message" id="message" class="form-control" name="message"></textarea>
+      <textarea
+        formControlName="message"
+        id="message"
+        class="form-control resize-none"
+        [class]="{
+          'is-invalid': message?.errors?.['required'] && submitted
+        }"
+        name="message"
+      ></textarea>
+      <div
+        *ngIf="message?.errors?.['required'] && submitted"
+        class="text-danger mt-1 small"
+      >Message is required</div>
     </div>
     <button type="submit" class="btn btn-primary">Primary</button>
   </form>

@@ -7,6 +7,7 @@ import {FormGroup, Validators, FormControl} from '@angular/forms';
   styleUrls: ['./form-feedback.component.css']
 })
 export class FormFeedbackComponent implements OnInit {
+  submitted = false
   @Output() handlerSubmit = new EventEmitter<number>();
 
   constructor() { }
@@ -24,10 +25,24 @@ export class FormFeedbackComponent implements OnInit {
   get email() { return this.feedbackForm.get('email'); }
   get message() { return this.feedbackForm.get('message'); }
 
-  handlerFormFeedback(){
+  get emailErrorMassage() {
+    let errorMassage = 'Email is '
+    const errorsArray = []
+    if (this.email?.errors?.['required']) errorsArray.push('required')
+    if (this.email?.errors?.['email']) errorsArray.push('invalid value')
 
-    if (this.feedbackForm.status === "INVALID") return
+    errorMassage+= errorsArray.join(',')
+
+    return errorMassage
+  }
+
+  handlerFormFeedback(){
+    if (this.feedbackForm.status === "INVALID") {
+      this.submitted = true
+      return
+    }
     this.feedbackForm.reset()
+    this.submitted = false
     this.handlerSubmit.emit()
   }
 }

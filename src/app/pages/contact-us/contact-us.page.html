@@ -1,6 +1,8 @@
 <div class="row">
   <app-base-modal
     [isShow]="isShowModal"
+    [title]="'Feedback form'"
+    [description]="'Success submit'"
     (handlerClose)="handlerModalClose()"
   ></app-base-modal>
   <app-form-feedback

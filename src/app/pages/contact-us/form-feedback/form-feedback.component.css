@@ -2,3 +2,16 @@
   max-width: 630px;
   margin: 0 auto;
 }
+
+.form-feedback-form-group {
+  height: 90px;
+  margin-bottom: 10px;
+}
+
+.form-feedback-form-group-textarea {
+  height: 119px;
+}
+
+.resize-none {
+  resize: none;
+}
