@@ -2,43 +2,44 @@
 
 ## Description 
 
-This is an application work with Cat API - https://docs.thecatapi.com
+It is an application that works with Cat API - https://docs.thecatapi.com
 
 Handled three API endpoints:
 <br>
 -- Cat list 
 https://api.thecatapi.com/v1/images/search
-<br>
+<br><br>
 Query Parameter
-<br>
-page - integer
-<br>
-limit - integer
-<br>
-order - string ( Rand, Desc, Asc )
+<ul>
+  <li>page - integer</li>
+  <li>limit - integer</li>
+  <li>order - string ( Rand, Desc, Asc )</li>
+</ul>
+
 
 
 -- List the Cat Breeds
-https://api.thecatapi.com/v1/breeds?
-<br>
+https://api.thecatapi.com/v1/breeds
+<br><br>
 Query Parameter
-<br>
-page - integer
-<br>
-limit - integer
+<ul>
+  <li>page - integer</li>
+  <li>limit - integer</li>
+</ul>
 
 -- Search for Breeds by name 
 https://api.thecatapi.com/v1/breeds/search
-<br>
+<br><br>
 Query Parameter
-<br>
-q - string
+<ul>
+  <li>q - integer</li>
+</ul>
 
 ## Architecture
 
 <ul>
   <li>App - main directory</li>
-  <li>pages - contain page components, components belonged for page, store, services</li>
+  <li>pages - page contain components, components belonged for page, store, services</li>
   <li>base - contain global components</li>
   <li>store - contain store file selector for every point of store</li>
 </ul>
