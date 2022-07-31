@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {CatCard} from "../cat-card/cat-card.component.interface";
+import {CatCard} from "./cat-card/cat-card.component.interface";
 import {catchError, throwError} from "rxjs";
 
 @Injectable()
-export class ConfigService {
+export class CatsListService {
   constructor(private http: HttpClient) {
 
   }
@@ -30,30 +30,6 @@ export class ConfigService {
         headers: {
           'x-api-key': '6a47c858-707f-4dc7-a309-cb4cdf0365ae'
         }})
-      .pipe(catchError(this.handleError));
-  }
-
-  addFavouritesCats(image_id: string, sub_id: string){
-    return this.http
-      .post('https://api.thecatapi.com/v1/favourites', {
-        image_id, sub_id
-        // image_id: "9ccXTANkb",
-        // sub_id: "your-user-1234"
-      }, {
-        headers: {
-          'x-api-key': '6a47c858-707f-4dc7-a309-cb4cdf0365ae'
-        }
-      })
-      .pipe(catchError(this.handleError));
-  }
-
-  deleteFavouritesCats(favourite_id: string){
-    return this.http
-      .delete(`https://api.thecatapi.com/v1/favourites/${favourite_id}`, {
-        headers: {
-          'x-api-key': '6a47c858-707f-4dc7-a309-cb4cdf0365ae'
-        }
-      })
       .pipe(catchError(this.handleError));
   }
 }

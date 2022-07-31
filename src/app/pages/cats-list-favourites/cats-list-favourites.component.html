@@ -4,6 +4,7 @@
     class="col-4"
     *ngFor="let catItem of favorite$ | async"
     [catCardItem]="catItem"
+    [isFavorite]="true"
     (handlerFavoriteClick)="deleteCatCardFavorites($event)"
   >
   </app-cat-card>

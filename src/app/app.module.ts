@@ -16,9 +16,11 @@ import { BasePaginationComponent } from './base/base-pagination/base-pagination.
 import { CatsListFavouritesComponent } from './pages/cats-list-favourites/cats-list-favourites.component';
 
 import { StoreModule } from '@ngrx/store';
-import {favoritesReducer} from "./store/favorites.reducer";
 
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+import {catListReducer} from "./pages/cats-list/store/cats-list.reducer";
+import {favoritesReducer} from "./pages/cats-list-favourites/store/favorites.reducer";
 
 
 
@@ -35,7 +37,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   ],
   imports: [
     StoreModule.forRoot({
-      favorites: favoritesReducer
+      catList: catListReducer,
+      favorites: favoritesReducer,
     }),
     InfiniteScrollModule,
     BrowserModule,

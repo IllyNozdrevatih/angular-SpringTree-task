@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {CatCard, CatCardFavorite} from "./cat-card/cat-card.component.interface";
-import {ConfigService} from "./config/config.service";
+import {CatsListService} from "./cats-list.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
 import {Store} from "@ngrx/store";
-import {add} from "../../store/favorites.actions";
+import {toggleFavorite} from "../cats-list-favourites/store/favorites.actions";
+import {Observable} from "rxjs";
+import {selectCatList} from "../../store/collection.selector";
+import {init, push} from "./store/cats-list.actions";
+import {selectFavoritesIDs} from "../cats-list-favourites/store/favorites.selectior";
 
 enum OrderOptions {
   Rand = 'Rand', Desc = 'Desc', Asc = 'Asc'
@@ -14,10 +18,12 @@ enum OrderOptions {
   selector: 'app-cats-list',
   templateUrl: './cats-list.component.html',
   styleUrls: ['./cats-list.component.css'],
-  providers: [ConfigService]
+  providers: [CatsListService]
 })
 export class CatsListComponent implements OnInit {
-  catList:CatCardFavorite[] = []
+  favorite$: Observable<CatCardFavorite[]>;
+  favoriteID$: Observable<string[]>;
+  catList$: Observable<ReadonlyArray<CatCard>>;
 
   readonly formLimitOptions = [9, 12]
   formLimit = this.formLimitOptions[0]
@@ -27,11 +33,27 @@ export class CatsListComponent implements OnInit {
 
   pageNumber = 1
 
-  constructor(private configService: ConfigService, private router: Router, private activatedRoute: ActivatedRoute, private store: Store<{ favorites: CatCard[]}>) {
-
+  constructor(
+    private configService: CatsListService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private store: Store<{ favorites: CatCardFavorite[]}>
+  ) {
+    this.favorite$ = this.store.select('favorites')
+    this.catList$ = this.store.select(selectCatList)
+    this.favoriteID$ = this.store.select(selectFavoritesIDs)
   }
 
   ngOnInit(){
+    let isLoaded = false
+    this.catList$.subscribe(data => {
+      if (data.length > 0) {
+        isLoaded = true
+        return
+      }
+    })
+    if (isLoaded) return
+
     this.activatedRoute.queryParams
       .subscribe(params => {
         const page = params.hasOwnProperty('page') ? params['page'] : this.pageNumber
@@ -44,13 +66,13 @@ export class CatsListComponent implements OnInit {
       });
 
     this.configService.fetchCats(this.formLimit, this.pageNumber, this.formOrder).subscribe((data) => {
-      this.catList = data.map(item => { return  {...item, favorite: false} })
+      this.store.dispatch(init({catList: data}))
     })
   }
 
   handlerFormLimitSelect(limit: number){
     this.configService.fetchCats(limit, this.pageNumber, this.formOrder).subscribe((data) => {
-      this.catList = data.map(item => { return  {...item, favorite: false} })
+      this.store.dispatch(push({catList: data}))
     })
     this.formLimit = limit
     this.router.navigate(
@@ -67,7 +89,7 @@ export class CatsListComponent implements OnInit {
 
   handlerFormOrderSelect(order: OrderOptions){
     this.configService.fetchCats(this.formLimit, this.pageNumber, order).subscribe((data) => {
-      this.catList = data.map(item => { return  {...item, favorite: false} })
+      this.store.dispatch(push({catList: data}))
     })
     this.formOrder = order
     this.router.navigate(
@@ -85,12 +107,9 @@ export class CatsListComponent implements OnInit {
   handlerChangePagination(pageNumber: number, scrolled = false){
     this.configService.fetchCats(this.formLimit, pageNumber, this.formOrder).subscribe((data) => {
       if (scrolled){
-        this.catList = [
-          ...this.catList,
-          ...data.map(item => { return  {...item, favorite: false} })
-        ]
+        this.store.dispatch(push({catList: data}))
       } else {
-        this.catList = data.map(item => { return  {...item, favorite: false} })
+        this.store.dispatch(init({catList: data}))
       }
     })
     this.pageNumber = pageNumber
@@ -112,15 +131,19 @@ export class CatsListComponent implements OnInit {
     )
   }
 
-  addCatCardFavorites(catItemID: string){
-    const catItemIndex = this.catList.findIndex(catItem => catItem.id === catItemID)
-    const catItem = this.catList[catItemIndex]
-    catItem.favorite = true
-    this.store.dispatch(add({ catCard: catItem }))
+  addCatCardFavorites(catItem: CatCard){
+    this.store.dispatch(toggleFavorite({ catCard: catItem }))
   }
 
-  onScrollDown(ev: any){
+  onScrollDown(){
     this.handlerChangePagination(this.pageNumber+1, true)
-    console.log("scrolled down!!", ev);
+  }
+
+  getIsFavorite(catItemID: string) {
+    let isFavorite = false
+    this.favoriteID$.subscribe(data => {
+      isFavorite = data.includes(catItemID)
+    })
+    return isFavorite
   }
 }
