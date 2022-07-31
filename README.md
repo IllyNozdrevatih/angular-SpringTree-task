@@ -2,7 +2,7 @@
 
 ## Description 
 
-It is an application that works with Cat API - https://docs.thecatapi.com
+It is an application works with Cat API - https://docs.thecatapi.com
 
 Handled three API endpoints:
 <br>
