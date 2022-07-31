@@ -39,7 +39,7 @@ Query Parameter
 
 <ul>
   <li>App - main directory</li>
-  <li>pages - page contain components, components belonged for page, store, services</li>
+  <li>pages - the page contains components, components belonging for page, store, services</li>
   <li>base - contain global components</li>
   <li>store - contain store file selector for every point of store</li>
 </ul>
