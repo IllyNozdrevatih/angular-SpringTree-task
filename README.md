@@ -1,5 +1,49 @@
 # MyApp
 
+## Description 
+
+This is an application work with Cat API - https://docs.thecatapi.com
+
+Handled three API endpoints:
+-- Cat list 
+https://api.thecatapi.com/v1/images/search
+<br>
+Query Parameter
+<br>
+page - integer
+<br>
+limit - integer
+<br>
+order - string ( Rand, Desc, Asc )
+
+
+-- List the Cat Breeds
+https://api.thecatapi.com/v1/breeds?
+<br>
+Query Parameter
+<br>
+page - integer
+<br>
+limit - integer
+
+-- Search for Breeds by name 
+https://api.thecatapi.com/v1/breeds/search
+<br>
+Query Parameter
+<br>
+q - string
+
+## Architecture
+
+<ul>
+  <li>App - main directory</li>
+  <li>pages - contain page components, components belonged for page, store, services</li>
+  <li>base - contain global components</li>
+  <li>store - contain store file selector for every point of store</li>
+</ul>
+
+## Default app information
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.6.
 
 ## Development server
