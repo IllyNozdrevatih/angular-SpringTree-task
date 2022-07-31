@@ -1,0 +1,9 @@
+.search-btn {
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search-inp {
+  padding-right: 60px;
+}

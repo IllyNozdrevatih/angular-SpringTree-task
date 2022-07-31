@@ -28,4 +28,13 @@ export class CatsListFavouritesPage implements OnInit {
   deleteCatCardFavorites(catID: string) {
     this.store.dispatch(remove({catCardID: catID}))
   }
+
+  isEmptyFavorites() {
+    let isEmpty = true
+    this.favorite$.subscribe(data => {
+      isEmpty = data.length === 0
+    })
+
+    return isEmpty
+  }
 }

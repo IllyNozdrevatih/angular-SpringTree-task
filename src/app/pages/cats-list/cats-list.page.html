@@ -1,5 +1,6 @@
-
-<div infinite-scroll
+<h2 class="text-center">Cats list</h2>
+<div
+  infinite-scroll
  (scrolled)="onScrollDown()"
  [infiniteScrollDistance]="1"
 >
@@ -37,7 +38,7 @@
       </select>
     </div>
   </form>
-  <div class="row">
+  <div *ngIf="isEmptyCatList() === false" class="row">
     <app-cat-card
       class="col-4 mb-4"
       *ngFor="let catItem of catList$ | async"
@@ -47,4 +48,5 @@
     >
     </app-cat-card>
   </div>
+  <h4>No cats</h4>
 </div>

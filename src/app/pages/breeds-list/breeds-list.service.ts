@@ -19,7 +19,7 @@ export class BreedsListService {
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
-  fetchBreeds(limit = 5, pageNumber = 0){
+  fetchBreeds(pageNumber = 0, limit = 9){
     return this.http
       .get<BreedCardInterface[]>(`https://api.thecatapi.com/v1/breeds?limit=${limit}&page=${pageNumber}`,{
         headers: {

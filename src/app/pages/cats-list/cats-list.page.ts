@@ -60,9 +60,9 @@ export class CatsListPage implements OnInit {
         const limit = params.hasOwnProperty('limit') ? params['limit'] : this.formLimit
         const order = params.hasOwnProperty('order') ? params['order'] : this.formOrder
 
-        this.pageNumber = Number(page)
-        this.formLimit = Number(limit)
-        this.formOrder = String(order)
+        this.pageNumber = Number(page.trim())
+        this.formLimit = Number(limit.trim())
+        this.formOrder = String(order.trim())
       });
 
     this.catListService.fetchCats(this.formLimit, this.pageNumber, this.formOrder).subscribe((data) => {
@@ -71,40 +71,16 @@ export class CatsListPage implements OnInit {
   }
 
   handlerFormLimitSelect(limit: number){
-    this.catListService.fetchCats(limit, this.pageNumber, this.formOrder).subscribe((data) => {
-      this.store.dispatch(push({catList: data}))
-    })
     this.formLimit = limit
-    this.router.navigate(
-      ['/'],
-      {
-        queryParams: {
-          page: this.pageNumber,
-          limit: this.formLimit,
-          order: this.formOrder
-        }
-      }
-    )
+    this.handlerChangePagination(this.pageNumber, false, true)
   }
 
   handlerFormOrderSelect(order: OrderOptions){
-    this.catListService.fetchCats(this.formLimit, this.pageNumber, order).subscribe((data) => {
-      this.store.dispatch(push({catList: data}))
-    })
     this.formOrder = order
-    this.router.navigate(
-      ['/'],
-      {
-        queryParams: {
-          page: this.pageNumber,
-          limit: this.formLimit,
-          order: order
-        }
-      }
-    )
+    this.handlerChangePagination(this.pageNumber, false, true)
   }
 
-  handlerChangePagination(pageNumber: number, scrolled = false){
+  handlerChangePagination(pageNumber: number, scrolled = false, updateQuery = false){
     this.catListService.fetchCats(this.formLimit, pageNumber, this.formOrder).subscribe((data) => {
       if (scrolled){
         this.store.dispatch(push({catList: data}))
@@ -113,7 +89,7 @@ export class CatsListPage implements OnInit {
       }
     })
     this.pageNumber = pageNumber
-    if (pageNumber === 1){
+    if (pageNumber === 1 && !updateQuery){
       this.router.navigate(
         ['/']
       )
@@ -145,5 +121,14 @@ export class CatsListPage implements OnInit {
       isFavorite = data.includes(catItemID)
     })
     return isFavorite
+  }
+
+  isEmptyCatList(){
+    let isEmpty = true
+    this.catList$.subscribe(data => {
+      isEmpty = data.length === 0
+    })
+
+    return isEmpty
   }
 }

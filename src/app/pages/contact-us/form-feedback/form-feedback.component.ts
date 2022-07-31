@@ -25,6 +25,7 @@ export class FormFeedbackComponent implements OnInit {
   get message() { return this.feedbackForm.get('message'); }
 
   handlerFormFeedback(){
+
     if (this.feedbackForm.status === "INVALID") return
     this.feedbackForm.reset()
     this.handlerSubmit.emit()

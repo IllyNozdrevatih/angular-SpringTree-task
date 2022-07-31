@@ -2,10 +2,12 @@
   <form
     [formGroup]="feedbackForm"
     (ngSubmit)="handlerFormFeedback()"
+    #ngForm="ngForm"
     class="d-flex flex-column">
     <div class="form-group">
       <label for="name">Name</label>
       <input formControlName="name" id="name" class="form-control" type="text" name="username">
+      <div *ngIf="name?.errors?.['required'] && ngForm.submitted">Name is required</div>
     </div>
     <div class="form-group">
       <label for="email">Email address</label>

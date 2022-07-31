@@ -1,5 +1,5 @@
-<h2>Favorites list</h2>
-<div class="row">
+<h2 class="text-center">Favorites list</h2>
+<div class="row" *ngIf="isEmptyFavorites() === false">
   <app-cat-card
     class="col-4"
     *ngFor="let catItem of favorite$ | async"
@@ -8,4 +8,7 @@
     (handlerFavoriteClick)="deleteCatCardFavorites($event)"
   >
   </app-cat-card>
+</div>
+<div class="text-center" *ngIf="isEmptyFavorites()">
+  <h4>No favorite cats</h4>
 </div>
