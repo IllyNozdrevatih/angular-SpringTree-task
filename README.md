@@ -5,6 +5,7 @@
 This is an application work with Cat API - https://docs.thecatapi.com
 
 Handled three API endpoints:
+<br>
 -- Cat list 
 https://api.thecatapi.com/v1/images/search
 <br>
