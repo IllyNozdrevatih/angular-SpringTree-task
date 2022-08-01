@@ -7,12 +7,12 @@ import {BreedsListPage} from "./pages/breeds-list/breeds-list.page";
 import {NotFoundPage} from "./pages/not-found/not-found.page";
 
 const routes: Routes = [
-  { path: '', component: CatsListPage },
-  { path: 'contact-us', component: ContactUsPage },
-  { path: 'favourites', component: CatsListFavouritesPage },
-  { path: 'breeds', component: BreedsListPage },
-  { path: '404', component: NotFoundPage },
-  { path: '**', redirectTo: '/404' }
+  { path: '', component: CatsListPage, title: 'Home page - cat list' },
+  { path: 'contact-us', component: ContactUsPage, title: 'Contact us' },
+  { path: 'favourites', component: CatsListFavouritesPage, title: 'Favourite cats' },
+  { path: 'breeds', component: BreedsListPage, title: 'Breeds list' },
+  { path: '404', component: NotFoundPage, title: 'Not found'  },
+  { path: '**', redirectTo: '/404', title: 'Not found'  }
 ];
 
 @NgModule({
