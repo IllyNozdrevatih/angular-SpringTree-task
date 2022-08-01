@@ -1,7 +1,7 @@
 <h2 class="text-center">Favorites list</h2>
 <div class="row" *ngIf="isEmptyFavorites() === false">
   <app-cat-card
-    class="col-4"
+    class="col-12 col-md-6 col-lg-4 mb-3"
     *ngFor="let catItem of favorite$ | async"
     [catCardItem]="catItem"
     [isFavorite]="true"
