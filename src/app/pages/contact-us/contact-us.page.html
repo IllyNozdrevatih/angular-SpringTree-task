@@ -1,12 +1,14 @@
-<div class="row">
-  <app-base-modal
-    [isShow]="isShowModal"
-    [title]="'Feedback form'"
-    [description]="'Success submit'"
-    (handlerClose)="handlerModalClose()"
-  ></app-base-modal>
-  <app-form-feedback
-    class="w-100"
-    (handlerSubmit)="handlerFeedbackFormSubmit()"
-  ></app-form-feedback>
+<div class="container">
+  <div class="row">
+    <app-base-modal
+      [isShow]="isShowModal"
+      [title]="'Feedback form'"
+      [description]="'Success submit'"
+      (handlerClose)="handlerModalClose()"
+    ></app-base-modal>
+    <app-form-feedback
+      class="w-100"
+      (handlerSubmit)="handlerFeedbackFormSubmit()"
+    ></app-form-feedback>
+  </div>
 </div>
