@@ -24,6 +24,7 @@ import {CatsListPage} from "./pages/cats-list/cats-list.page";
 import { BreedsListPage } from './pages/breeds-list/breeds-list.page';
 import { BreedCardComponent } from './pages/breeds-list/breed-card/breed-card.component';
 import {breedListReducer} from "./pages/breeds-list/store/breeds-list.reducer";
+import { NotFoundPage } from './pages/not-found/not-found.page';
 
 
 
@@ -39,6 +40,7 @@ import {breedListReducer} from "./pages/breeds-list/store/breeds-list.reducer";
     CatsListFavouritesPage,
     BreedsListPage,
     BreedCardComponent,
+    NotFoundPage,
   ],
   imports: [
     StoreModule.forRoot({

@@ -10,7 +10,7 @@ export interface Image {
   url: string;
 }
 
-export interface BreedCardInterface {
+export interface BreedCardComponentInterface {
   weight: Weight;
   id: string;
   name: string;

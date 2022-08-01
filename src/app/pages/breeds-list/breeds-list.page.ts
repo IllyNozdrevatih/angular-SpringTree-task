@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BreedsListService} from "./breeds-list.service";
 import {Store} from "@ngrx/store";
-import {BreedCardInterface} from "./breed-card/breed-card.interface";
+import {BreedCardComponentInterface} from "./breed-card/breed-card.component.interface";
 import {Observable} from "rxjs";
 import {init, push} from "./store/breeds-list.actions";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -13,7 +13,7 @@ import {ActivatedRoute, Router} from "@angular/router";
   providers: [BreedsListService]
 })
 export class BreedsListPage implements OnInit {
-  breedList$: Observable<BreedCardInterface[]>
+  breedList$: Observable<BreedCardComponentInterface[]>
   searchString = ''
   pageNumber = 1
   stopInfiniteScroll = false
@@ -22,7 +22,7 @@ export class BreedsListPage implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private breedsListService: BreedsListService,
-    private store: Store<{ breedList: BreedCardInterface[]}>
+    private store: Store<{ breedList: BreedCardComponentInterface[]}>
   ) {
     this.breedList$ = this.store.select('breedList')
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 import {catchError, throwError} from "rxjs";
-import {BreedCardInterface} from "./breed-card/breed-card.interface";
+import {BreedCardComponentInterface} from "./breed-card/breed-card.component.interface";
 
 @Injectable()
 export class BreedsListService {
@@ -27,7 +27,7 @@ export class BreedsListService {
    */
   fetchBreeds(pageNumber = 0, limit = 9){
     return this.http
-      .get<BreedCardInterface[]>(`https://api.thecatapi.com/v1/breeds?limit=${limit}&page=${pageNumber}`,{
+      .get<BreedCardComponentInterface[]>(`https://api.thecatapi.com/v1/breeds?limit=${limit}&page=${pageNumber}`,{
         headers: {
           'x-api-key': '6a47c858-707f-4dc7-a309-cb4cdf0365ae'
         }}
@@ -41,7 +41,7 @@ export class BreedsListService {
    */
   getBreedByName(name: string){
     return this.http
-      .get<BreedCardInterface[]>(`https://api.thecatapi.com/v1/breeds/search?q=${name}`,{
+      .get<BreedCardComponentInterface[]>(`https://api.thecatapi.com/v1/breeds/search?q=${name}`,{
         headers: {
           'x-api-key': '6a47c858-707f-4dc7-a309-cb4cdf0365ae'
         }}

@@ -1,8 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { init, push } from './breeds-list.actions';
-import {BreedCardInterface} from '../breed-card/breed-card.interface';
+import {BreedCardComponentInterface} from '../breed-card/breed-card.component.interface';
 
-export const catsListState: ReadonlyArray<BreedCardInterface> = []
+export const catsListState: ReadonlyArray<BreedCardComponentInterface> = []
 
 export const breedListReducer = createReducer(
   catsListState,

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit } from '@angular/core';
-import {BreedCardInterface} from './breed-card.interface';
+import {BreedCardComponentInterface} from './breed-card.component.interface';
 
 @Component({
   selector: 'app-breed-card',
@@ -7,7 +7,7 @@ import {BreedCardInterface} from './breed-card.interface';
   styleUrls: ['./breed-card.component.css']
 })
 export class BreedCardComponent implements OnInit {
-  @Input() breedCardItem!: BreedCardInterface;
+  @Input() breedCardItem!: BreedCardComponentInterface;
 
   constructor() { }
 
