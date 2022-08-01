@@ -28,6 +28,7 @@ export class BreedsListPage implements OnInit {
   }
 
   ngOnInit(): void {
+    // check data in state. If state full, don't do new request
     let isLoaded = false
     this.breedList$.subscribe(data => {
       if (data.length > 0) {
@@ -37,6 +38,7 @@ export class BreedsListPage implements OnInit {
     })
     if (isLoaded) return
 
+    // get queryParams and save in component variables
     this.activatedRoute.queryParams
       .subscribe(params => {
         const page = params.hasOwnProperty('page') ? params['page'] : this.pageNumber
@@ -46,8 +48,9 @@ export class BreedsListPage implements OnInit {
         this.searchString = searchString.trim()
       })
 
+    // load data by queryParams
     if (this.searchString.length === 0) {
-      this.breedsListService.fetchBreeds().subscribe(data => {
+      this.breedsListService.fetchBreeds(this.pageNumber).subscribe(data => {
         this.store.dispatch(init({breedList: data}))
       })
     } else {
@@ -60,6 +63,11 @@ export class BreedsListPage implements OnInit {
     this.loadBreeds(this.pageNumber+1)
   }
 
+  /**
+   *
+   * @param pageNumber
+   * @param loadMore
+   */
   loadBreeds(pageNumber: number, loadMore = true) {
     this.pageNumber = pageNumber
     this.breedsListService.fetchBreeds(this.pageNumber).subscribe(data => {
@@ -79,12 +87,18 @@ export class BreedsListPage implements OnInit {
     )
   }
 
+  /**
+   *
+   * @param queryUpdate
+   */
   submitSearch(queryUpdate = true) {
+    // do default request if searchString empty
     if (this.searchString.length === 0 ){
       this.stopInfiniteScroll = false
       this.loadBreeds(1, false)
       return
     }
+    // do search request by searchString
     this.breedsListService.getBreedByName(this.searchString).subscribe(data => {
       this.store.dispatch(init({breedList: data}))
     })

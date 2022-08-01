@@ -45,6 +45,7 @@ export class CatsListPage implements OnInit {
   }
 
   ngOnInit(){
+    // check data in state. If state full, don't do new request
     let isLoaded = false
     this.catList$.subscribe(data => {
       if (data.length > 0) {
@@ -54,6 +55,7 @@ export class CatsListPage implements OnInit {
     })
     if (isLoaded) return
 
+    // get queryParams and save in component variables
     this.activatedRoute.queryParams
       .subscribe(params => {
         const page = params.hasOwnProperty('page') ? params['page'] : this.pageNumber
@@ -65,21 +67,36 @@ export class CatsListPage implements OnInit {
         this.formOrder = String(order.trim())
       });
 
+    // load data by queryParams
     this.catListService.fetchCats(this.formLimit, this.pageNumber, this.formOrder).subscribe((data) => {
       this.store.dispatch(init({catList: data}))
     })
   }
 
+  /**
+   *
+   * @param limit
+   */
   handlerFormLimitSelect(limit: number){
     this.formLimit = limit
     this.handlerChangePagination(this.pageNumber, false, true)
   }
 
+  /**
+   *
+   * @param order
+   */
   handlerFormOrderSelect(order: OrderOptions){
     this.formOrder = order
     this.handlerChangePagination(this.pageNumber, false, true)
   }
 
+  /**
+   *
+   * @param pageNumber
+   * @param scrolled
+   * @param updateQuery
+   */
   handlerChangePagination(pageNumber: number, scrolled = false, updateQuery = false){
     this.catListService.fetchCats(this.formLimit, pageNumber, this.formOrder).subscribe((data) => {
       if (scrolled){
@@ -107,6 +124,10 @@ export class CatsListPage implements OnInit {
     )
   }
 
+  /**
+   *
+   * @param catItem
+   */
   addCatCardFavorites(catItem: CatCardInterface){
     this.store.dispatch(toggleFavorite({ catCard: catItem }))
   }
@@ -115,6 +136,10 @@ export class CatsListPage implements OnInit {
     this.handlerChangePagination(this.pageNumber+1, true)
   }
 
+  /**
+   *
+   * @param catItemID
+   */
   getIsFavorite(catItemID: string) {
     let isFavorite = false
     this.favoriteID$.subscribe(data => {

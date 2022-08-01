@@ -16,6 +16,10 @@ export class CatCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   *
+   * @param catItemID
+   */
   handlerFavoriteIconClick(catItemID: string){
     this.handlerFavoriteClick.emit(catItemID)
   }

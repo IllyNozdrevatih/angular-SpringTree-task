@@ -18,6 +18,13 @@ export class CatsListService {
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
+
+  /**
+   *
+   * @param limit
+   * @param pageNumber
+   * @param order
+   */
   fetchCats(limit = 3, pageNumber = 0, order = 'Desc'){
     return this.http
       .get<CatCardInterface[]>(`https://api.thecatapi.com/v1/images/search?limit=${limit}&page=${pageNumber}&order=${order}`)

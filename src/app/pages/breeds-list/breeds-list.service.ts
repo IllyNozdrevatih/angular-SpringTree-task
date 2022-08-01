@@ -19,6 +19,12 @@ export class BreedsListService {
     // Return an observable with a user-facing error message.
     return throwError(() => new Error('Something bad happened; please try again later.'));
   }
+
+  /**
+   *
+   * @param pageNumber
+   * @param limit
+   */
   fetchBreeds(pageNumber = 0, limit = 9){
     return this.http
       .get<BreedCardInterface[]>(`https://api.thecatapi.com/v1/breeds?limit=${limit}&page=${pageNumber}`,{
@@ -29,6 +35,10 @@ export class BreedsListService {
       .pipe(catchError(this.handleError));
   }
 
+  /**
+   *
+   * @param name
+   */
   getBreedByName(name: string){
     return this.http
       .get<BreedCardInterface[]>(`https://api.thecatapi.com/v1/breeds/search?q=${name}`,{
