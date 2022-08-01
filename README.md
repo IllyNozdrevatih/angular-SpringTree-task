@@ -51,6 +51,7 @@ Query Parameter
   <li>cats-list-favourites /favourites - favourites cats</li>
   <li>breeds-list /breeds - breeds list</li>
   <li>contact-us /contact-us - feedback form with validation</li>
+  <li>not-found /404 or any non-existent page - layout for error page</li>
 </ul>
 
 ## Default app information
