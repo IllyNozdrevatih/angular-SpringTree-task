@@ -41,7 +41,7 @@ export class BreedsListPage implements OnInit {
     // get queryParams and save in component variables
     this.activatedRoute.queryParams
       .subscribe(params => {
-        const page = params.hasOwnProperty('page') ? params['page'] : this.pageNumber
+        const page = params.hasOwnProperty('page') ? params['page'] : String(this.pageNumber)
         const searchString = params.hasOwnProperty('q') ? params['q'] : ''
 
         this.pageNumber = Number(page.trim())

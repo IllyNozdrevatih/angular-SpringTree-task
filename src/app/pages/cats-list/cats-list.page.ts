@@ -58,8 +58,8 @@ export class CatsListPage implements OnInit {
     // get queryParams and save in component variables
     this.activatedRoute.queryParams
       .subscribe(params => {
-        const page = params.hasOwnProperty('page') ? params['page'] : this.pageNumber
-        const limit = params.hasOwnProperty('limit') ? params['limit'] : this.formLimit
+        const page = params.hasOwnProperty('page') ? params['page'] : String(this.pageNumber)
+        const limit = params.hasOwnProperty('limit') ? params['limit'] : String(this.formLimit)
         const order = params.hasOwnProperty('order') ? params['order'] : this.formOrder
 
         this.pageNumber = Number(page.trim())
